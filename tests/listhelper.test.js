@@ -84,6 +84,22 @@ describe('favorite blogs', () => {
       __v: 0
     },
     {
+      _id: '10',
+      title: 'bbbbbbb',
+      author: 'Ebubuci',
+      url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+      likes: 10,
+      __v: 0
+    },
+    {
+      _id: '12',
+      title: 'ccccccc',
+      author: 'Ebubuci',
+      url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+      likes: 10,
+      __v: 0
+    },
+    {
       _id: '3',
       title: 'Go To Statement Considered Harmful',
       author: 'Edsger W. Dijkstra',
@@ -94,7 +110,7 @@ describe('favorite blogs', () => {
     {
       _id: '8',
       title: 'the second one',
-      author: 'lalala',
+      author: 'Edsger W. Dijkstra',
       url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
       likes: 15,
       __v: 0
@@ -110,6 +126,15 @@ describe('favorite blogs', () => {
         likes: 15,
       })
   })
+
+  // test('author has most blogs', () => {
+  //   const result = listHelper.mostBlogs(listBlogs)
+  //   expect(result).toEqual({
+  //     author: 'Edsger W. Dijkstra',
+  //     blogs: 2
+  //   })
+  // })
+
 
 })
 
