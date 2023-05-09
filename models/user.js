@@ -1,8 +1,14 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 //Step creating user
 //1. create the models 2. ensure the related blogs are refer in user model and blog model by adding type and ref
 const userSchema = new mongoose.Schema({
-  username: String,
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    minlength: 3
+  },
   passwordHash: String,
   name: String,
   blogs: [
@@ -12,6 +18,8 @@ const userSchema = new mongoose.Schema({
     }
   ]
 })
+
+userSchema.plugin(uniqueValidator)
 
 userSchema.set('toJSON', {
   transform: (document, returnedObject) => {
