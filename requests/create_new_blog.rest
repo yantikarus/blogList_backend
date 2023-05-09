@@ -1,0 +1,10 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+    "title": "newblogg22",
+    "author": "mama",
+    "url": "www.gooooogley.com",
+    "userId":"645979a892f64089c2c8e6bf"
+
+}
