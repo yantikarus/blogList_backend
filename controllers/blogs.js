@@ -20,6 +20,8 @@ blogsRouter.get('/:id', async (req, res) => {
 //2
 blogsRouter.post('/',async (req, res) => {
   const body = req.body
+  const username = req.user
+  console.log('the username in post router is', username)
   //verify the authorization from request and the secret code using jwt verify
   const decodedToken = jwt.verify(req.token, process.env.SECRET)
   //if no decoded token id,return error
@@ -50,6 +52,7 @@ blogsRouter.post('/',async (req, res) => {
 })
 
 blogsRouter.delete('/:id', async (req, res) => {
+  const username = req.user
   const decodedToken = jwt.verify(req.token, process.env.SECRET)
 
   if(!decodedToken.id){
