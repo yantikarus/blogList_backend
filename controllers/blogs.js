@@ -50,32 +50,40 @@ blogsRouter.post('/',async (req, res) => {
 })
 
 blogsRouter.delete('/:id', async (req, res) => {
-  //express async errors library is used, therefore next and try catch block no longer needed.
-  await  Blog.findByIdAndRemove(req.params.id)
+  const decodedToken = jwt.verify(req.token, process.env.SECRET)
+
+  if(!decodedToken.id){
+    return res.status(401).json({ error: 'token invalid' })
+  }
+  const blog = await Blog.findById(req.params.id)
+
+  if(blog.user.toString()=== decodedToken.id){
+    await  Blog.findByIdAndRemove(req.params.id)
+  }
   res.status(204).end()
 })
 
 // blogsRouter.put('/:id',  async (req, res) => {
 //   res.json("put request")
-// //   console.log("put router")
-// //   const body = req.body
-// //   console.log(body)
-// //   console.log("the params is", req.params.id)
+//   console.log("put router")
+//   const body = req.body
+//   console.log(body)
+//   console.log("the params is", req.params.id)
 
-// //   const blog = await Blog.findById(req.params.id)
-// //   blog.likes = req.body.likes
-// //   const updatedBlog = await blog.save()
+//   const blog = await Blog.findById(req.params.id)
+//   blog.likes = req.body.likes
+//   const updatedBlog = await blog.save()
 
-// //   // const blog = {
-// //   //   title: body.title,
-// //   //   author: body.author,
-// //   //   url:body.url,
-// //   //   likes:body.likes,
-// //   // }
+//   // const blog = {
+//   //   title: body.title,
+//   //   author: body.author,
+//   //   url:body.url,
+//   //   likes:body.likes,
+//   // }
 
-// //   // const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, blog,{ new:true } )
-// //   res.json(updatedBlog)
-// // })
+//   // const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, blog,{ new:true } )
+//   res.json(updatedBlog)
+// })
 //   // Blog.findByIdAndUpdate(req.params.id, update, {new: true})
 //   //   .then(updatedBlog => {
 //   //     console.log('the updated response blog is', updatedBlog)

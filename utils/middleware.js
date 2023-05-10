@@ -9,7 +9,7 @@ const requestLogger = (req, res, next) => {
 }
 
 const tokenExtractor = (req, res, next) => {
-  if(req.method === 'POST'){
+  if(req.method === 'POST'|| req.method === 'DELETE'){
     const authorization = req.get('authorization')
     console.log('the auth middleware', authorization)
     if(authorization && authorization.startsWith('bearer ')){
