@@ -3,8 +3,9 @@ const listHelper = require('../utils/list_helper')
 
 test('dummy returns one', () => {
   const blogs = []
+  //create a variable that hold the value passed to the function
   const result = listHelper.dummy(blogs)
-
+  //what should you expect?
   expect(result).toBe(1)
 })
 
