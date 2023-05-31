@@ -38,9 +38,19 @@ const mostBlogs =(blogs) => {
   const blogCount = authorCounts[topAuthor]
   return {author : topAuthor, blogCount: blogCount }
 }
+
+const mostLikes =(blogs) => {
+  const listOfLikes = blogs.map(x => x.likes)
+  const mostNum = Math.max(...listOfLikes)
+  const popular = blogs.filter( blog => blog.likes === mostNum)
+  const returnObj = { author : popular[0]['author'], likes: popular[0]['likes'] }
+  return returnObj
+}
+
 module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
-  mostBlogs
+  mostBlogs,
+  mostLikes
 }
