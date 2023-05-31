@@ -32,32 +32,15 @@ const favoriteBlog = (blogs) => {
   return returnObj
 }
 
-// const mostBlogs =(blogs) => {
-//   //map the author name
-//   const authorList = blogs.map(blog => blog.author)
-//   const counts = {}
-//   //count how many occurence 
-//   for (let i in authorList){
-//     counts[i] = counts[i] ? counts[i] +1 : 1
-//   }
-//   console.log(counts)
-//   let val = Object.values(counts)
-//   let maxVal = Math.max(...val)
-
-//   //   const filteredBlogs = blogs.filter(x=> x.author ===authorMost)
-//   //   console.log(authorList)
-//   //   console.log(authorMost)
-//   //   console.log(filteredBlogs)
-//   //   const result = {
-//   //     author: authorMost,
-//   //     blogs: filteredBlogs.length
-//   //   }
-//   return countAuthor
-
-// }
+const mostBlogs =(blogs) => {
+  const authorCounts = _.countBy(blogs, 'author')
+  const topAuthor = _.maxBy(_.keys(authorCounts), author => authorCounts[author]);
+  const blogCount = authorCounts[topAuthor]
+  return {author : topAuthor, blogCount: blogCount }
+}
 module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
-  // mostBlogs
+  mostBlogs
 }
